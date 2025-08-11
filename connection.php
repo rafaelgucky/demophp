@@ -1,5 +1,4 @@
 <?php
-$conn;
 try{
     $server = "localhost";
     $user = "root";
@@ -7,7 +6,7 @@ try{
     $db = "php_demo";
     $port = "3306";
     
-    $conn = new mysqli($server, $user, $pwd, $db, $port);
+    return new mysqli($server, $user, $pwd, $db, $port);
 }
 catch(Exception $e){
    echo "ERRO DE CONEXÃO COM O BANCO </br>";

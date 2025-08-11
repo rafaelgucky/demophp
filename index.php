@@ -18,7 +18,9 @@
     <main class="d-flex justify-content-center align-items-center">
         <div>
             <?php
-                include "connection.php";
+                require_once("Sevices/UserService.php");
+                require_once("Models/User.php");
+
                 $email = $_POST["email"] ?? "";
                 $pwd = $_POST["pwd"] ?? "";
 
@@ -26,9 +28,10 @@
                     // $sql = "INSERT INTO users (email, pwd) VALUES ('" . $email . "','" . $pwd . "')";
                     // $stmt = $conn->prepare($sql);
                     // $stmt->execute();
+                    $userService = new UserService();
+                    $user = $userService->LoginUser($email, $pwd);
 
-                    $x = $conn->execute_query("SELECT * FROM users WHERE email='" . $email . "' && pwd='" . $pwd . "'");
-                    setcookie("id", $x->fetch_column(0));
+                    echo "Email: " . $user->email;
                 }
             ?>
             <section class="border border-secondary rounded p-3">
