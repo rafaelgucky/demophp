@@ -1,7 +1,10 @@
 <?php
 class HomeController{
-    public function index(){
-        echo "<br>Home/Index";
+    public function index(array $data){
+        echo "<br>";
+        foreach($data as $key => $value){
+            echo "{$key} = {$value}<br>";
+        }
     }
 }
 

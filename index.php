@@ -23,10 +23,10 @@
                 require_once "Services/Mapper.php";
 
                 $mapper = new Mapper();
-                $mapper->Redirect($_SERVER["PHP_SELF"]);
+                $mapper->Redirect($_SERVER["PHP_SELF"], $_SERVER["QUERY_STRING"] ?? "");
 
-                $email = $_POST["email"] ?? "";
-                $pwd = $_POST["pwd"] ?? "";
+                $email = $_GET["email"] ?? "";
+                $pwd = $_GET["pwd"] ?? "";
 
                 if(!empty($email) && !empty($pwd)){
                     // $sql = "INSERT INTO users (email, pwd) VALUES ('" . $email . "','" . $pwd . "')";
@@ -39,12 +39,11 @@
                         echo "Usuário não encontrado";
                     }else{
                         setcookie("id", $user->id);
-                        echo "Email: " . $user->email;
                     }
                 }
             ?>
             <section class="border border-secondary rounded p-3">
-                <form action="#" method="post">
+                <form action="#" method="get">
                     <div class="form-group">
                         <label for="email" class="form-label">Email</label>
                         <input type="text" name="email" id="txt" class="form-control" placeholder="exemple@gmail.com">
