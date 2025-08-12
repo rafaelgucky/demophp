@@ -8,5 +8,9 @@ class User{
         $this->email = $email;
         $this->pwd = $pwd;
     }
+
+    public function getEmail(): string{
+        return $this->email;
+    }
 }
 ?>

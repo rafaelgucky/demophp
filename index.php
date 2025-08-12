@@ -18,8 +18,12 @@
     <main class="d-flex justify-content-center align-items-center">
         <div>
             <?php
-                require_once("Sevices/UserService.php");
-                require_once("Models/User.php");
+                require_once "Services/UserService.php";
+                require_once "Models/User.php";
+                require_once "Services/Mapper.php";
+
+                $mapper = new Mapper();
+                $mapper->Redirect($_SERVER["PHP_SELF"]);
 
                 $email = $_POST["email"] ?? "";
                 $pwd = $_POST["pwd"] ?? "";
@@ -31,7 +35,12 @@
                     $userService = new UserService();
                     $user = $userService->LoginUser($email, $pwd);
 
-                    echo "Email: " . $user->email;
+                    if($user == null){
+                        echo "Usuário não encontrado";
+                    }else{
+                        setcookie("id", $user->id);
+                        echo "Email: " . $user->email;
+                    }
                 }
             ?>
             <section class="border border-secondary rounded p-3">
