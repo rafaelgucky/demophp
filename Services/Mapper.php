@@ -1,8 +1,9 @@
 <?php
+require_once "Controllers/AuthController.php";
 require_once "Controllers/HomeController.php";
 
 class Mapper{
-    public function Redirect(string $uri, string $queryStrings){
+    public function Redirect(string $uri, array $data){
         $uri = str_replace("/index.php/","", $uri);
         $uri = str_replace("/index.php","", $uri);
 
@@ -18,37 +19,17 @@ class Mapper{
         if(sizeof($array) > 1){
             $stringMetodo = ucfirst($array[1]);
         }
-        
+
         $classe = "{$stringController}Controller";
 
         $controller  = new $classe();
-        $controller->$stringMetodo($this->getParameters(urldecode($queryStrings)));
+        $controller->$stringMetodo($data);
     }
 
-    private function getParameters(string $queryStrings): array{
-        if(empty($queryStrings)) return [];
-        $key = "";
-        $value = "";
-        $temp = "";
-        $result = [];
-
-        for($i = 0; $i < strlen($queryStrings); $i++){
-            if($queryStrings[$i] == "="){
-                $key = $temp;
-                $temp = "";
-                continue;
-            }
-
-            if($queryStrings[$i] == "&"){
-                $value = $temp;
-                $temp = "";
-                $result[$key] = $value;
-                continue;
-            }
-            $temp .= $queryStrings[$i];
-        }
-        $result[$key] = $temp;
-        return $result;
+    public function getView(string $uri){
+        $uri = str_replace("/index.php/","", $uri);
+        $uri = str_replace("/index.php","", $uri);
+        return $uri;
     }
 }
 ?>

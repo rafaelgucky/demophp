@@ -1,10 +1,9 @@
 <?php
-class HomeController{
+
+use Controllers\ControllerBase;
+class HomeController extends ControllerBase{
     public function index(array $data){
-        echo "<br>";
-        foreach($data as $key => $value){
-            echo "{$key} = {$value}<br>";
-        }
+        $this->LoadView($this::class, __FUNCTION__, $data);
     }
 }
 

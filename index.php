@@ -15,49 +15,14 @@
     </style>
 </head>
 <body>
-    <main class="d-flex justify-content-center align-items-center">
-        <div>
-            <?php
-                require_once "Services/UserService.php";
-                require_once "Models/User.php";
-                require_once "Services/Mapper.php";
-
-                $mapper = new Mapper();
-                $mapper->Redirect($_SERVER["PHP_SELF"], $_SERVER["QUERY_STRING"] ?? "");
-
-                $email = $_GET["email"] ?? "";
-                $pwd = $_GET["pwd"] ?? "";
-
-                if(!empty($email) && !empty($pwd)){
-                    // $sql = "INSERT INTO users (email, pwd) VALUES ('" . $email . "','" . $pwd . "')";
-                    // $stmt = $conn->prepare($sql);
-                    // $stmt->execute();
-                    $userService = new UserService();
-                    $user = $userService->LoginUser($email, $pwd);
-
-                    if($user == null){
-                        echo "Usuário não encontrado";
-                    }else{
-                        setcookie("id", $user->id);
-                    }
-                }
-            ?>
-            <section class="border border-secondary rounded p-3">
-                <form action="#" method="get">
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="text" name="email" id="txt" class="form-control" placeholder="exemple@gmail.com">
-                    </div>
-                    <div class="form-group mt-3">
-                        <label for="password">Senha</label>
-                        <input type="password" name="pwd" id="password" class="form-control">
-                    </div>
-                    <input type="submit" value="Enviar" class="btn btn-primary mt-3">
-                </form>
-            <section>
-        </div>
-    </main>
-
+    <?php
+    echo "<pre>";
+    var_dump($_SERVER["PHP_SELF"]);
+    echo "</pre>";
+        require_once "Services/Mapper.php";
+        $mapper = new Mapper();
+        $mapper->Redirect($_SERVER["PHP_SELF"], empty($_GET) ? $_POST : $_GET);
+    ?>
 </body>
 <script>
     const isDarkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
