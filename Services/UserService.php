@@ -7,7 +7,7 @@ class UserService{
         $this->connectionService = new Connection();
     }
 
-    public function LoginUser($email, $pwd) : User | null{
+    public function loginUser($email, $pwd) : User | null{
         $conn = $this->connectionService->getConnection();
         $x = $conn->execute_query("SELECT * FROM users WHERE email='" . $email . "' && pwd='" . $pwd . "'");
         $row = $x->fetch_row();

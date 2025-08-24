@@ -14,7 +14,7 @@
         }
     </style>
 </head>
-<body>
+<body id="body">
 
     <h3>Layout</h3>
 

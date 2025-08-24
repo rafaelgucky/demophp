@@ -24,7 +24,7 @@
         }
     </style>
 </head>
-<body>
+<body id="body">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-5">
@@ -44,7 +44,7 @@
                 <div class="tab-content">
                     <!-- Login -->
                     <div class="tab-pane fade show active" id="login" role="tabpanel">
-                        <form action="/home" method="post">
+                        <form action="/auth/authenticateLogin" method="post">
                             <div class="mb-3">
                                 <label for="emailLogin" class="form-label">E-mail</label>
                                 <input type="email" class="form-control" id="emailLogin" name="email" placeholder="seuemail@exemplo.com" required>
@@ -59,7 +59,7 @@
 
                     <!-- Criar Conta -->
                     <div class="tab-pane fade" id="signup" role="tabpanel">
-                        <form action="/home" method="post">
+                        <form action="/auth/authenticateLogin" method="post">
                             <div class="mb-3">
                                 <label for="nomeCadastro" class="form-label">Nome</label>
                                 <input type="text" class="form-control" id="nomeCadastro" name="name" placeholder="Seu nome completo" required>
